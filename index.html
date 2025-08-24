@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Moon Phase Tracker</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      background: #0b1d2a;
+      color: white;
+      text-align: center;
+      padding: 20px;
+    }
+    h1 {
+      color: #f5c518;
+    }
+    .moon-container {
+      margin-top: 20px;
+    }
+    .moon-phase {
+      display: inline-block;
+      margin: 15px;
+      padding: 10px;
+      border-radius: 12px;
+      background: rgba(255, 255, 255, 0.1);
+      width: 150px;
+    }
+    .moon-phase img {
+      width: 60px;
+      height: 60px;
+      margin-bottom: 10px;
+    }
+    button {
+      margin-top: 20px;
+      padding: 10px 20px;
+      background: #f5c518;
+      color: black;
+      border: none;
+      border-radius: 6px;
+      cursor: pointer;
+      font-weight: bold;
+    }
+    button:hover {
+      background: #d4a016;
+    }
+  </style>
+</head>
+<body>
+  <h1>Moon Phase Tracker🌙</h1>
+
+  <!-- Today -->
+  <div class="moon-container" id="today-phase">
+    <h2>Today</h2>
+    <img id="moon-phase-img" src="" alt="Moon phase">
+    <p id="moon-phase-name"></p>
+  </div>
+
+  <!-- Next 7 Days Button -->
+  <button onclick="showNext7Days()">Next 7 Days</button>
+
+  <!-- Next 7 Days Display -->
+  <div class="moon-container" id="next-days"></div>
+
+  <script>
+    // Moon phase mapping Aug 24–Aug 31, 2025
+    function getMoonPhase(date) {
+      const moonPhases = {
+        "2025-08-24": { phase: "Waxing Crescent", image: "moon24.jpg" },
+        "2025-08-25": { phase: "Waxing Crescent", image: "moon25.jpg" },
+        "2025-08-26": { phase: "Waxing Crescent", image: "moon26.jpg" },
+        "2025-08-27": { phase: "Waxing Crescent", image: "moon27.jpg" },
+        "2025-08-28": { phase: "Waxing Crescent", image: "moon28.jpg" },
+        "2025-08-29": { phase: "Waxing Crescent", image: "moon29.jpg" },
+        "2025-08-30": { phase: "Waxing Crescent", image: "moon30.jpg" },
+        "2025-08-31": { phase: "First Quarter", image: "moon31.jpg" },
+      };
+
+      const dateStr = date.toISOString().split("T")[0];
+      return moonPhases[dateStr] || { phase: "Unknown", image: "default.png" };
+    }
+
+    // Show today's moon phase
+    function showToday() {
+      const today = new Date("2025-08-24"); // 🌙 For testing, fixed start date
+      const moon = getMoonPhase(today);
+      document.getElementById("moon-phase-img").src = moon.image;
+      document.getElementById("moon-phase-name").textContent = moon.phase;
+    }
+
+    // Show next 7 days moon phases
+    function showNext7Days() {
+      const nextDaysDiv = document.getElementById("next-days");
+      nextDaysDiv.innerHTML = "";
+
+      let today = new Date("2025-08-24"); // 🌙 For testing, fixed start date
+
+      for (let i = 1; i <= 7; i++) {
+        let nextDate = new Date(today);
+        nextDate.setDate(today.getDate() + i);
+
+        let moon = getMoonPhase(nextDate);
+
+        let div = document.createElement("div");
+        div.className = "moon-phase";
+
+        let dateStr = nextDate.toISOString().split("T")[0];
+
+        div.innerHTML = `
+          <p><strong>${dateStr}</strong></p>
+          <img src="${moon.image}" alt="${moon.phase}">
+          <p>${moon.phase}</p>
+        `;
+        nextDaysDiv.appendChild(div);
+      }
+    }
+
+    // Initialize
+    showToday();
+  </script>
+</body>
+</html>
