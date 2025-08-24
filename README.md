@@ -52,9 +52,6 @@ Open index.html in any browser.
 
 You’ll see today’s moon phase in the center and the next 7 days listed below.
 
-📸 Preview
-https://i.postimg.cc/Fsyyq7f8/image.png
-
 🔮 Future Enhancements
 
 Fetch real-time moon phases from NASA’s API.
