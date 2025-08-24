@@ -35,14 +35,6 @@ CSS3 → Styling with cards & dark background
 
 JavaScript → Dynamic moon phase updates
 
-📂 Project Structure
-moon-phase-tracker/
-│── index.html       # Main file
-│── style.css        # Styling
-│── script.js        # Logic for moon phases
-│── images/          # Moon phase icons
-│   ├── moon24.png
-
 
 🚀 How to Run
 
